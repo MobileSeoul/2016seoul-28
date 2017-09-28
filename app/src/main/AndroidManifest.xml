@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="seoulapp.chok.rokseoul">
+
+    <!--
+         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but you must specify either coarse or fine
+         location permissions for the 'MyLocation' functionality.
+    -->
+    <!--<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+-->
+    <permission
+        android:name="seoulapp.chok.rokseoul.locationapi.maps.permission.MAPS_RECEIVE"
+        android:protectionLevel="signature" />
+    <uses-permission android:name="example.com.projectd.locationapi.maps.permission.MAPS_RECEIVE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
+
+    <!--
+         The application requires a camera.
+
+         NOTE: Any application that requests the CAMERA permission but does not
+         declare any camera features with the <uses-feature> element will be
+         assumed to use all camera features (auto-focus and flash). Thus, the
+         application will not be compatible with devices that do not support
+         all camera features. Please use <uses-feature> to declare only the
+         camera features that your application does need. For instance, if you
+         request the CAMERA permission, but you do not need auto-focus or
+         flash, then declare only the android.hardware.camera feature. The
+         other camera features that you do not request will no longer be
+         assumed as required.
+    -->
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-feature android:name="android.hardware.camera2.full" />
+
+    <!--
+        Add this permission to get access to the camera.
+    -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.Read_EXTERNAL_STORAGE"/>
+
+    <!--zxing-->
+
+
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:supportsRtl="true"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:theme="@style/AppTheme.NoActionBar">
+        <activity
+            android:name="seoulapp.chok.rokseoul.IntroActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="seoulapp.chok.rokseoul.MainActivity"
+            android:screenOrientation="portrait" />
+
+
+        <!--
+             The API key for Google Maps-based APIs is defined as a string resource.
+             (See the file "res/values/google_maps_api.xml").
+             Note that the API key is linked to the encryption key used to sign the APK.
+             You need a different API key for each encryption key, including the release key that is used to
+             sign the APK for publishing.
+             You can define the keys for the debug and release targets in src/debug/ and src/release/.
+        -->
+        <!-- Google Maps key -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_api_key" />
+
+
+        <activity android:name=".firebase.GoogleSignInActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".BaseActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".drawingtool.DrawingActivity"
+            android:screenOrientation="portrait"
+            android:permission="" />
+
+        <activity android:name=".QRAcvitivy"
+            android:screenOrientation="portrait"
+            android:stateNotNeeded="true"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            />
+        <activity android:name=".displayingbitmaps.ui.ImageGridActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeDark"
+            android:label="@string/app_name">
+
+        </activity>
+        <activity android:name=".displayingbitmaps.ui.ImageDetailActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppThemeDark.FullScreen"
+            android:parentActivityName=".displayingbitmaps.ui.ImageGridActivity" >
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".displayingbitmaps.ui.ImageGridActivity" />
+        </activity>
+
+        <service
+            android:name=".firebase.DownloadService"
+            android:exported="false"/>
+
+
+    </application>
+
+</manifest>
